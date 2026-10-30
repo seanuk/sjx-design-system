@@ -57,4 +57,5 @@ Use the most specific token that exists: component, then semantic, then grid.
 
 ## Status
 - Done: project, shadcn, Figma tokens, text styles, Button, Input, form components, date picker, Storybook, GitHub repo.
-- Next: publish Storybook.
+- Published: https://sjx-design-system.vercel.app. Vercel deploys `main` automatically and gives other branches a preview.
+- Not built yet: Icons and Logos foundation pages.
