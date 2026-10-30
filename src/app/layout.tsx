@@ -1,16 +1,6 @@
 import type { Metadata } from "next";
-import { Figtree, Geist_Mono } from "next/font/google";
+import { figtree, geistMono } from "./fonts";
 import "./globals.css";
-
-const figtree = Figtree({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",

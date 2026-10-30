@@ -17,20 +17,44 @@ A personal design system. Storybook is the reference for all components.
 - Next.js (App Router, TypeScript, `src/` directory)
 - Tailwind CSS
 - shadcn/ui, built on Base UI
-- Storybook (planned, not yet installed)
+- Storybook (`npm run storybook`, port 6006)
 - Import alias: `@/*`
 
 ## Style decisions
-- Font: Figtree (`--font-figtree`). Mono: Geist Mono.
+- Font: Figtree (`--font-sans`). Mono: Geist Mono (`--font-geist-mono`).
 - Theme lives in `src/app/globals.css`. Change colours there only.
 - Radius: set in `--radius`. Keep it consistent.
+- Grid: 8px, plus 1, 2, 4 and 12. Off-grid values round up to the next `--grid-*` value.
 - Avoid the default shadcn look. Do not use Inter or Space Grotesk.
 
 ## Rules for new components
 - Add with `npx shadcn@latest add <name>`.
-- Use theme variables. No hard-coded colours.
+- Follow the token rules below. Convert everything `shadcn add` generates before finishing.
 - Every component gets a matching `.stories.tsx` file.
+- `shadcn add` generates `import { cn } from "cn"`. Change it to `@/lib/utils`, which knows the Figma text styles.
+- Form controls built on a native element share `inputStyles` from `@/lib/input-styles`. Change input styling there.
+
+## Token rules
+Every visual value in components, stories and pages links to a token in `src/app/globals.css`. Do not use Tailwind's number scale (`gap-2`, `size-4`, `h-10`, `p-0`), its type scale (`text-sm`, `font-medium`, `leading-none`), raw values (`[3px]`, `#fff`) or palette colours from outside the theme.
+
+Use the most specific token that exists: component, then semantic, then grid.
+
+| Value | Token | Example |
+|---|---|---|
+| Gap, padding, margin | `--number-spacing-*` for 0, 4, 8, 16, 24, 32, 40, 48, 64, 128. `--grid-*` for 1, 2, 12 | `gap-(--number-spacing-xs)`, `gap-(--grid-12)` |
+| Width, height, size, position | `--grid-*` | `size-(--grid-16)`, `-inset-x-(--grid-12)` |
+| Corners | Component token, else `--number-radius-*` | `rounded-(--input-default-corner)` |
+| Border width | Component token, else `--number-border-width-*` | `border-(length:--number-border-width-sm)` |
+| Colour | Component token, else semantic `--color-*`, else a shadcn role, which points at the semantic tokens | `bg-(--button-primary-surface)`, `text-(--color-content-tertiary)` |
+| Type | `text-<style>` from the Figma text styles, or its parts when the colour or size varies | `text-body-md`, `text-(length:--text-body-md)`, `font-(weight:--text-button-md--font-weight)` |
+| Shadow | `shadow-sm`, `shadow-md`, `shadow-lg`, or a focus ring token | `shadow-(--shadow-focus-primary)` |
+
+- Keyword values with no token are fine: `w-full`, `h-auto`, `flex-1`, `top-1/2`, `tracking-normal`. So is `stroke-3`, which draws 2px icon lines at 16px.
+- If a value has no token, add it to Figma and `globals.css` first, or ask. Do not invent a one-off value.
+- Figma strokes sit inside the frame, so subtract the border from padding: `px-[calc(var(--input-default-padding-l-r)-var(--input-default-border-width))]`.
+- In `cn()`, put the line height after the text size. `cn` drops a line height that comes first.
+- New Figma text styles must be added to the `font-size` group in `src/lib/utils.ts`, or `cn` treats them as colours.
 
 ## Status
-- Done: project, shadcn, theme, Figtree font, GitHub repo.
-- Next: install Storybook, write button stories, publish.
+- Done: project, shadcn, Figma tokens, text styles, Button, Input, form components, date picker, Storybook, GitHub repo.
+- Next: publish Storybook.
