@@ -29,6 +29,14 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from "@/components/ui/chart"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 
 const visits = [
   { month: "Jan", desktop: 1860, mobile: 800, tablet: 320 },
@@ -315,26 +323,22 @@ export const WithTable: Story = {
         </ChartContainer>
         <details className="text-body-md">
           <summary className="cursor-pointer">Show as a table</summary>
-          <table className="mt-(--number-spacing-xs) w-full text-left tabular-nums">
-            <thead className="text-muted-foreground">
-              <tr>
-                <th scope="col" className="font-(weight:--text-body-md--font-weight)">
-                  Month
-                </th>
-                <th scope="col" className="font-(weight:--text-body-md--font-weight)">
-                  Visits
-                </th>
-              </tr>
-            </thead>
-            <tbody>
+          <Table density="compact" className="mt-(--number-spacing-xs)">
+            <TableHeader>
+              <TableRow>
+                <TableHead>Month</TableHead>
+                <TableHead numeric>Visits</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {visits.map(({ month, desktop }) => (
-                <tr key={month}>
-                  <td>{month}</td>
-                  <td>{desktop.toLocaleString()}</td>
-                </tr>
+                <TableRow key={month}>
+                  <TableCell>{month}</TableCell>
+                  <TableCell numeric>{desktop.toLocaleString()}</TableCell>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
+            </TableBody>
+          </Table>
         </details>
       </div>
     </Frame>

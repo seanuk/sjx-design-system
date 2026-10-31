@@ -65,5 +65,5 @@ Use the most specific token that exists: component, then semantic, then grid.
 - Lucide has no brand icons. Brand logos are added one at a time, as they are needed.
 
 ## Status
-- Done: project, shadcn, design tokens, text styles, Button, Button Group, Pagination, Chart, Context Menu, Dialog, Dropdown Menu, Questionnaire, Sheet, Sidebar, Menubar, Navigation Menu, Input, form components, date picker, Chip, Accordion, Alert, Avatar, Breadcrumb, Card, Skeleton, Spinner, Tabs, Tooltip, Icons foundation page, Storybook, GitHub repo.
+- Done: project, shadcn, design tokens, text styles, Button, Button Group, Pagination, Chart, Context Menu, Dialog, Dropdown Menu, Questionnaire, Sheet, Sidebar, Stat, Table, Menubar, Navigation Menu, Input, form components, date picker, Chip, Accordion, Alert, Avatar, Breadcrumb, Card, Skeleton, Spinner, Tabs, Tooltip, Icons foundation page, Storybook, GitHub repo.
 - Published: https://sjx-design-system.vercel.app. Vercel deploys `main` automatically and gives other branches a preview.

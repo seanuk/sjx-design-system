@@ -432,6 +432,12 @@
   --selection-disabled-description: var(--color-disabled);
   --selection-disabled-border: var(--color-disabled);
 
+  /* Components: table */
+  --table-cell-padding-l-r: var(--number-spacing-sm);
+  --table-compact-padding-t-b: var(--number-spacing-xxs);
+  --table-comfortable-padding-t-b: var(--grid-12);
+  --table-border-width: var(--number-border-width-sm);
+
   /* Components: chip */
   --chip-corner: var(--number-radius-full);
   --chip-border-width: var(--number-border-width-sm);
