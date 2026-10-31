@@ -12,7 +12,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "No Figma component yet. Days are 40px to match `Button` and use the Primary button colours when selected.",
+          "Days are 40px to match `Button` and use the Primary button colours when selected.",
       },
     },
   },

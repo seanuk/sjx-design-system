@@ -1,4 +1,6 @@
 import type { Preview } from '@storybook/nextjs-vite'
+import { addons, useEffect } from 'storybook/preview-api'
+import { UPDATE_GLOBALS } from 'storybook/internal/core-events'
 
 import { figtree, geistMono } from '../src/app/fonts'
 import '../src/app/globals.css'
@@ -11,6 +13,34 @@ document.documentElement.classList.add(
 )
 
 const preview: Preview = {
+  decorators: [
+    // The pseudo-states addon saves a story's forced state as a global, which
+    // would carry on to every story opened after it. It also leaves its class on
+    // elements the next story reuses. Clear both on navigation.
+    (Story, { id, viewMode, parameters, globals }) => {
+      const storySetsIt = viewMode === 'story' && parameters.pseudo
+
+      useEffect(() => {
+        if (globals.pseudo && !storySetsIt) {
+          addons.getChannel().emit(UPDATE_GLOBALS, { globals: { pseudo: false } })
+        }
+        // Only on navigation, so a state picked in the toolbar stays on.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [id, viewMode])
+
+      useEffect(() => {
+        if (viewMode !== 'story' || storySetsIt || globals.pseudo) return
+        document.querySelectorAll('#storybook-root [class*="pseudo-"]').forEach((element) => {
+          element.classList.remove(
+            ...[...element.classList].filter((name) => name.startsWith('pseudo-'))
+          )
+        })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [id, viewMode, globals.pseudo])
+
+      return <Story />
+    },
+  ],
   parameters: {
     controls: {
       matchers: {
@@ -19,9 +49,16 @@ const preview: Preview = {
       },
     },
     options: {
-      storySort: {
-        order: ['Foundations', 'Components'],
-      },
+      // Foundations first, then A to Z. Stories in a component keep their file order.
+      // Storybook evaluates this as plain JavaScript, so it can't have type annotations.
+      storySort: (a, b) =>
+        a.title === b.title
+          ? 0
+          : a.title === 'Foundations'
+            ? -1
+            : b.title === 'Foundations'
+              ? 1
+              : a.title.localeCompare(b.title, undefined, { sensitivity: 'base' }),
     },
   },
 };

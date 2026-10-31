@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "No Figma component yet. Built from the `selection/*` tokens, sized to the 4px grid.",
+          "Built from the `--selection-*` tokens, sized to the grid.",
       },
     },
   },

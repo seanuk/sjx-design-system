@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Not a separate component in Figma. It uses the same tokens and states as `Text input`.",
+          "Uses the same tokens and states as `Input`.",
       },
     },
   },

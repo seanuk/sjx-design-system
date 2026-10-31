@@ -1,4 +1,8 @@
+import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/nextjs-vite"
+import { icons, SearchIcon } from "lucide-react"
+
+import { Input } from "@/components/ui/input"
 
 const meta = {
   title: "Foundations",
@@ -69,18 +73,18 @@ const semanticColours = [
     ],
   },
   { group: "Disabled", tokens: ["disabled"] },
-  { group: "Info", tokens: ["info-surface", "info-default", "info-content"] },
+  { group: "Info", tokens: ["info-surface", "info-default", "info-content", "info-border"] },
   {
     group: "Success",
-    tokens: ["success-surface", "success-default", "success-content"],
+    tokens: ["success-surface", "success-default", "success-content", "success-border"],
   },
   {
     group: "Warning",
-    tokens: ["warning-surface", "warning-default", "warning-content"],
+    tokens: ["warning-surface", "warning-default", "warning-content", "warning-border"],
   },
   {
     group: "Error",
-    tokens: ["error-surface", "error-default", "error-content"],
+    tokens: ["error-surface", "error-default", "error-content", "error-border"],
   },
 ]
 
@@ -359,4 +363,72 @@ export const Layout: Story = {
       ))}
     </div>
   ),
+}
+
+const iconNames = Object.keys(icons) as (keyof typeof icons)[]
+
+function IconGallery() {
+  const [query, setQuery] = React.useState("")
+  const deferredQuery = React.useDeferredValue(query)
+  const matches = iconNames.filter((name) =>
+    name.toLowerCase().includes(deferredQuery.trim().toLowerCase().replace(/[\s-]/g, ""))
+  )
+
+  return (
+    <div className="flex flex-col gap-(--number-spacing-lg)">
+      <section className="flex flex-col gap-(--number-spacing-sm)">
+        <h2>Sizes</h2>
+        <div className="flex items-end gap-(--number-spacing-lg)">
+          <div className="flex flex-col items-center gap-(--number-spacing-xxs)">
+            <SearchIcon strokeWidth={2} className="size-(--grid-16)" />
+            <span className="text-label-xs text-content-secondary">16, strokeWidth 2</span>
+          </div>
+          <div className="flex flex-col items-center gap-(--number-spacing-xxs)">
+            <SearchIcon strokeWidth={2} className="size-(--grid-24)" />
+            <span className="text-label-xs text-content-secondary">24, strokeWidth 2</span>
+          </div>
+          <div className="flex flex-col items-center gap-(--number-spacing-xxs)">
+            <SearchIcon strokeWidth={2} className="size-(--grid-32)" />
+            <span className="text-label-xs text-content-secondary">32, strokeWidth 2</span>
+          </div>
+        </div>
+      </section>
+      <section className="flex flex-col gap-(--number-spacing-sm)">
+        <h2>Lucide</h2>
+        <div className="flex flex-col gap-(--number-spacing-xs) tablet:flex-row tablet:items-center tablet:gap-(--number-spacing-sm)">
+          <Input
+            aria-label="Search icons"
+            placeholder="Search icons"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            className="tablet:w-(--grid-320)"
+          />
+          <span className="text-label-sm text-content-secondary">
+            {matches.length} of {iconNames.length} icons
+          </span>
+        </div>
+        <div className="grid grid-cols-2 gap-(--number-spacing-xs) tablet:grid-cols-5 desktop-sm:grid-cols-8">
+          {matches.map((name) => {
+            const Icon = icons[name]
+
+            return (
+              <div
+                key={name}
+                className="flex flex-col items-center gap-(--number-spacing-xs) rounded-(--number-radius-xs) border-(length:--number-border-width-sm) border-border p-(--number-spacing-xs)"
+              >
+                <Icon className="size-(--grid-24)" />
+                <span className="w-full text-center text-label-xs break-words text-content-secondary">
+                  {name}Icon
+                </span>
+              </div>
+            )
+          })}
+        </div>
+      </section>
+    </div>
+  )
+}
+
+export const Icons: Story = {
+  render: () => <IconGallery />,
 }

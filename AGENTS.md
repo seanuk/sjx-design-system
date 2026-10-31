@@ -11,7 +11,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 # SJX Design System
 
 ## Purpose
-A personal design system. Storybook is the reference for all components.
+A personal design system, in code only. There is no Figma library. Storybook is the reference for all components.
 
 ## Stack
 - Next.js (App Router, TypeScript, `src/` directory)
@@ -31,7 +31,7 @@ A personal design system. Storybook is the reference for all components.
 - Add with `npx shadcn@latest add <name>`.
 - Follow the token rules below. Convert everything `shadcn add` generates before finishing.
 - Every component gets a matching `.stories.tsx` file.
-- `shadcn add` generates `import { cn } from "cn"`. Change it to `@/lib/utils`, which knows the Figma text styles.
+- `shadcn add` generates `import { cn } from "cn"`. Change it to `@/lib/utils`, which knows the text styles.
 - Form controls built on a native element share `inputStyles` from `@/lib/input-styles`. Change input styling there.
 
 ## Token rules
@@ -46,16 +46,23 @@ Use the most specific token that exists: component, then semantic, then grid.
 | Corners | Component token, else `--number-radius-*` | `rounded-(--input-default-corner)` |
 | Border width | Component token, else `--number-border-width-*` | `border-(length:--number-border-width-sm)` |
 | Colour | Component token, else semantic `--color-*`, else a shadcn role, which points at the semantic tokens | `bg-(--button-primary-surface)`, `text-(--color-content-tertiary)` |
-| Type | `text-<style>` from the Figma text styles, or its parts when the colour or size varies | `text-body-md`, `text-(length:--text-body-md)`, `font-(weight:--text-button-md--font-weight)` |
+| Type | `text-<style>` from the text styles in `globals.css`, or its parts when the colour or size varies | `text-body-md`, `text-(length:--text-body-md)`, `font-(weight:--text-button-md--font-weight)` |
 | Shadow | `shadow-sm`, `shadow-md`, `shadow-lg`, or a focus ring token | `shadow-(--shadow-focus-primary)` |
 
-- Keyword values with no token are fine: `w-full`, `h-auto`, `flex-1`, `top-1/2`, `tracking-normal`. So is `stroke-3`, which draws 2px icon lines at 16px.
-- If a value has no token, add it to Figma and `globals.css` first, or ask. Do not invent a one-off value.
-- Figma strokes sit inside the frame, so subtract the border from padding: `px-[calc(var(--input-default-padding-l-r)-var(--input-default-border-width))]`.
+- Keyword values with no token are fine: `w-full`, `h-auto`, `flex-1`, `top-1/2`, `tracking-normal`, `z-50`. So are animation utilities (`animate-spin`, `fade-in-0`, `zoom-in-95`), because motion has no tokens yet.
+- Number props that can't take a CSS variable (`sideOffset`) use a value from the grid.
+- If a value has no token, add it to `globals.css` first, or ask. Do not invent a one-off value.
+- Borders sit inside a component's size, so subtract the border from padding: `px-[calc(var(--input-default-padding-l-r)-var(--input-default-border-width))]`.
 - In `cn()`, put the line height after the text size. `cn` drops a line height that comes first.
-- New Figma text styles must be added to the `font-size` group in `src/lib/utils.ts`, or `cn` treats them as colours.
+- New text styles must be added to the `font-size` group in `src/lib/utils.ts`, or `cn` treats them as colours.
+
+## Icons
+- Interface icons come from Lucide: `import { SearchIcon } from "lucide-react"`. Use the `Icon` suffix.
+- Icon sizes use grid tokens: `size-(--grid-16)`.
+- All icons use stroke width 2, which is Lucide's default. Do not change it with a prop or class. Drawn thickness scales with the icon: 1.33px at 16, 2px at 24, 2.67px at 32.
+- Icons are decorative by default. Add `aria-label` when one is the only content that conveys meaning, or label the button around it.
+- Lucide has no brand icons. Brand logos are added one at a time, as they are needed.
 
 ## Status
-- Done: project, shadcn, Figma tokens, text styles, Button, Input, form components, date picker, Storybook, GitHub repo.
+- Done: project, shadcn, design tokens, text styles, Button, Input, form components, date picker, Chip, Accordion, Alert, Avatar, Breadcrumb, Card, Skeleton, Spinner, Tabs, Tooltip, Icons foundation page, Storybook, GitHub repo.
 - Published: https://sjx-design-system.vercel.app. Vercel deploys `main` automatically and gives other branches a preview.
-- Not built yet: Icons and Logos foundation pages.

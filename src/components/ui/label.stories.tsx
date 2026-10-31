@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Uses the Figma `label-md` text style and the `input/primary/label` token.",
+          "Uses the `label-md` text style and the `--input-primary-label` token.",
       },
     },
   },

@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "No Figma component yet. The trigger uses the Figma `Text input` styles and opens a `Calendar` in a `Popover`.",
+          "The trigger uses the `Input` styles and opens a `Calendar` in a popup, with dropdowns to change the month and year. `startMonth` and `endMonth` set the range, which defaults to 100 years back and 10 years ahead.",
       },
     },
   },
@@ -26,6 +26,8 @@ const meta = {
     value: { control: false },
     defaultValue: { control: false },
     onValueChange: { control: false },
+    startMonth: { control: false },
+    endMonth: { control: false },
     disabled: { control: "boolean" },
     placeholder: { control: "text" },
     "aria-invalid": { control: "boolean" },

@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 const secondaryStyles =
   "border-(--button-secondary-border) bg-(--button-secondary-surface) text-(--button-secondary-content) hover:bg-(--button-secondary-surface-hover) aria-expanded:bg-(--button-secondary-surface-hover) disabled:border-(--button-secondary-border-disabled) disabled:bg-(--button-secondary-surface-disabled) disabled:text-(--button-secondary-content-disabled)"
 
-// Figma strokes sit inside the frame, so padding subtracts the border width.
+// Borders sit inside the component's size, so padding subtracts the border width.
 // Each size sets --btn-pl, --btn-pr and --btn-border.
 const buttonVariants = cva(
   "group/button inline-flex shrink-0 items-center justify-center gap-(--number-spacing-xs) border-(length:--btn-border) border-transparent pr-[calc(var(--btn-pr)-var(--btn-border))] pl-[calc(var(--btn-pl)-var(--btn-border))] font-(weight:--text-button-md--font-weight) tracking-(--tracking-button) whitespace-nowrap no-underline uppercase transition-all outline-none select-none focus-visible:shadow-(--shadow-focus-primary) disabled:pointer-events-none aria-invalid:shadow-(--shadow-focus-error) [&_svg]:pointer-events-none [&_svg]:shrink-0",

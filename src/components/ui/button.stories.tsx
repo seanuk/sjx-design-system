@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Figma `Button`. Variant names follow shadcn: `default` is Primary, `secondary` is Secondary, `ghost` is Tertiary and `destructive` is Destructive. Size `sm` is Small, `default` is Medium and `lg` is Large. Mark icons with `data-icon` so the button uses the tighter icon padding.",
+          "Variant names follow shadcn: `default` is Primary, `secondary` is Secondary, `ghost` is Tertiary and `destructive` is Destructive. Size `sm` is Small, `default` is Medium and `lg` is Large. Mark icons with `data-icon` so the button uses the tighter icon padding.",
       },
     },
   },

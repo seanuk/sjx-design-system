@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "No Figma component yet. Built from the `selection/*` tokens, with the input corner and focus rings.",
+          "Built from the `--selection-*` tokens, with the input corner and focus rings.",
       },
     },
   },

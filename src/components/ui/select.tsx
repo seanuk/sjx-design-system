@@ -42,7 +42,7 @@ function SelectTrigger({
       data-size={size}
       className={cn(
         inputStyles,
-        "flex w-fit items-center justify-between gap-(--number-spacing-xs) py-(--number-spacing-none) text-(length:--text-body-md) leading-(--text-body-md--line-height) whitespace-nowrap select-none disabled:pointer-events-none data-placeholder:text-(--input-primary-placeholder) disabled:data-placeholder:text-(--input-disabled-placeholder) data-popup-open:bg-(--input-primary-surface-hover) data-[size=default]:h-(--grid-40) data-[size=sm]:h-(--grid-32) *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-(--number-spacing-xs) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-(--grid-16) [&>svg]:stroke-3 [&>svg]:text-(--input-primary-content) disabled:[&>svg]:text-(--input-disabled-content)",
+        "flex w-fit items-center justify-between gap-(--number-spacing-xs) py-(--number-spacing-none) text-(length:--text-body-md) leading-(--text-body-md--line-height) whitespace-nowrap select-none disabled:pointer-events-none data-placeholder:text-(--input-primary-placeholder) disabled:data-placeholder:text-(--input-disabled-placeholder) data-popup-open:bg-(--input-primary-surface-hover) data-[size=default]:h-(--grid-40) data-[size=sm]:h-(--grid-32) *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-(--number-spacing-xs) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-(--grid-16) [&>svg]:text-(--input-primary-content) disabled:[&>svg]:text-(--input-disabled-content)",
         className
       )}
       {...props}

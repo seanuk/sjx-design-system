@@ -64,7 +64,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "The trigger uses the Figma `Text input` styles. Figma has no menu design yet, so the list uses the input corner, `shadow-md` and the brand hover colour.",
+          "The trigger uses the `Input` styles. The list uses the input corner, `shadow-md` and the brand hover colour.",
       },
     },
   },

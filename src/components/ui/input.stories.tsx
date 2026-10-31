@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Figma `Text input`, without its leading and trailing icons. Set `aria-invalid` for the error state.",
+          "A single-line text field. Set `aria-invalid` for the error state.",
       },
     },
   },

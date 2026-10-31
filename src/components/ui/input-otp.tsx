@@ -5,24 +5,42 @@ import { cn } from "@/lib/utils"
 import { OTPInput, OTPInputContext } from "input-otp"
 import { MinusIcon } from "lucide-react"
 
+const InputOTPPointerFocusContext = React.createContext(false)
+
 function InputOTP({
   className,
   containerClassName,
+  onPointerDown,
+  onBlur,
   ...props
 }: React.ComponentProps<typeof OTPInput> & {
   containerClassName?: string
 }) {
+  // A text field always matches :focus-visible, so clicks and taps are tracked here.
+  const [pointerFocus, setPointerFocus] = React.useState(false)
+
   return (
-    <OTPInput
-      data-slot="input-otp"
-      containerClassName={cn(
-        "cn-input-otp group/input-otp flex items-center gap-(--number-spacing-xs)",
-        containerClassName
-      )}
-      spellCheck={false}
-      className={cn("disabled:cursor-not-allowed", className)}
-      {...props}
-    />
+    <InputOTPPointerFocusContext.Provider value={pointerFocus}>
+      <OTPInput
+        data-slot="input-otp"
+        containerClassName={cn(
+          "cn-input-otp group/input-otp flex items-center gap-(--number-spacing-xs)",
+          containerClassName
+        )}
+        spellCheck={false}
+        className={cn("disabled:cursor-not-allowed", className)}
+        onPointerDown={(event) => {
+          setPointerFocus(true)
+          onPointerDown?.(event)
+        }}
+        onBlur={(event) => {
+          // Leaving the window also blurs, but the field stays the active element.
+          if (document.activeElement !== event.currentTarget) setPointerFocus(false)
+          onBlur?.(event)
+        }}
+        {...props}
+      />
+    </InputOTPPointerFocusContext.Provider>
   )
 }
 
@@ -48,13 +66,15 @@ function InputOTPSlot({
 }) {
   const inputOTPContext = React.useContext(OTPInputContext)
   const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {}
+  const pointerFocus = React.useContext(InputOTPPointerFocusContext)
 
   return (
     <div
       data-slot="input-otp-slot"
       data-active={isActive}
+      data-focus-ring={isActive && !pointerFocus}
       className={cn(
-        "relative flex size-(--grid-40) items-center justify-center border-y-(length:--number-border-width-sm) border-r-(length:--number-border-width-sm) border-(--input-primary-border) bg-(--input-primary-surface) text-(length:--text-body-md) leading-(--text-body-md--line-height) text-(--input-primary-content) transition-all outline-none first:rounded-l-(--input-default-corner) first:border-l-(length:--number-border-width-sm) last:rounded-r-(--input-default-corner) group-has-disabled/input-otp:border-(--input-disabled-border) group-has-disabled/input-otp:bg-(--input-disabled-surface) group-has-disabled/input-otp:text-(--input-disabled-content) aria-invalid:border-(--color-border-focus-error) data-[active=true]:z-10 data-[active=true]:border-(--color-border-focus) data-[active=true]:bg-(--input-primary-surface-hover) data-[active=true]:shadow-(--shadow-focus-primary) data-[active=true]:aria-invalid:border-(--color-border-focus-error) data-[active=true]:aria-invalid:bg-(--input-primary-surface) data-[active=true]:aria-invalid:shadow-(--shadow-focus-error)",
+        "relative flex size-(--grid-40) items-center justify-center border-y-(length:--number-border-width-sm) border-r-(length:--number-border-width-sm) border-(--input-primary-border) bg-(--input-primary-surface) text-(length:--text-body-md) leading-(--text-body-md--line-height) text-(--input-primary-content) transition-all outline-none first:rounded-l-(--input-default-corner) first:border-l-(length:--number-border-width-sm) last:rounded-r-(--input-default-corner) group-has-disabled/input-otp:border-(--input-disabled-border) group-has-disabled/input-otp:bg-(--input-disabled-surface) group-has-disabled/input-otp:text-(--input-disabled-content) aria-invalid:border-(--color-border-focus-error) data-[active=true]:z-10 data-[active=true]:border-(--color-border-focus) data-[active=true]:bg-(--input-primary-surface-hover) data-[focus-ring=true]:shadow-(--shadow-focus-primary) data-[active=true]:aria-invalid:border-(--color-border-focus-error) data-[active=true]:aria-invalid:bg-(--input-primary-surface) data-[focus-ring=true]:aria-invalid:shadow-(--shadow-focus-error)",
         className
       )}
       {...props}

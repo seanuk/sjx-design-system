@@ -1,6 +1,6 @@
 import { createCn } from "cn/config"
 
-// Teaches cn that the Figma text styles are font sizes, not colours.
+// Teaches cn that the text styles are font sizes, not colours.
 export const cn = createCn({
   extend: {
     classGroups: {

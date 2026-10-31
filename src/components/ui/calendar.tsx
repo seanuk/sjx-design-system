@@ -33,7 +33,7 @@ function Calendar({
       showOutsideDays={showOutsideDays}
       weekStartsOn={weekStartsOn}
       className={cn(
-        "group/calendar bg-background p-(--number-spacing-xs) [--cell-radius:var(--button-default-corner)] [--cell-size:var(--grid-40)] in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
+        "group/calendar bg-background p-(--number-spacing-xs) [--cell-radius:var(--button-default-corner)] [--cell-size:var(--grid-40)] in-data-[slot=card-content]:bg-transparent in-data-[slot=date-picker-content]:bg-transparent",
         String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
         className
@@ -75,17 +75,17 @@ function Calendar({
           defaultClassNames.dropdowns
         ),
         dropdown_root: cn(
-          "relative rounded-(--cell-radius)",
+          "relative rounded-(--cell-radius) transition-all hover:bg-(--color-surface-secondary) has-[select:focus-visible:not([data-pointer-focus])]:shadow-(--shadow-focus-primary)",
           defaultClassNames.dropdown_root
         ),
         dropdown: cn(
-          "absolute inset-(--grid-0) bg-popover opacity-0",
+          "absolute inset-(--grid-0) size-full cursor-pointer bg-popover opacity-0",
           defaultClassNames.dropdown
         ),
         caption_label: cn(
           "text-heading-sm select-none",
           captionLayout !== "label" &&
-            "flex items-center gap-(--number-spacing-xxs) rounded-(--cell-radius) [&>svg]:size-(--grid-16) [&>svg]:stroke-3",
+            "flex h-(--grid-32) items-center gap-(--number-spacing-xxs) rounded-(--cell-radius) px-(--number-spacing-xs) [&>svg]:size-(--grid-16)",
           defaultClassNames.caption_label
         ),
         month_grid: cn("w-full border-collapse", defaultClassNames.month_grid),
@@ -162,6 +162,7 @@ function Calendar({
             <ChevronDownIcon className={cn("size-(--grid-16)", className)} {...props} />
           )
         },
+        Select: CalendarSelect,
         DayButton: ({ ...props }) => (
           <CalendarDayButton locale={locale} {...props} />
         ),
@@ -175,6 +176,31 @@ function Calendar({
           )
         },
         ...components,
+      }}
+      {...props}
+    />
+  )
+}
+
+// A select can match :focus-visible on click, so clicks and taps are tracked here.
+function CalendarSelect({
+  onPointerDown,
+  onBlur,
+  ...props
+}: React.ComponentProps<"select">) {
+  const [pointerFocus, setPointerFocus] = React.useState(false)
+
+  return (
+    <select
+      data-pointer-focus={pointerFocus || undefined}
+      onPointerDown={(event) => {
+        setPointerFocus(true)
+        onPointerDown?.(event)
+      }}
+      onBlur={(event) => {
+        // Leaving the window also blurs, but the select stays the active element.
+        if (document.activeElement !== event.currentTarget) setPointerFocus(false)
+        onBlur?.(event)
       }}
       {...props}
     />

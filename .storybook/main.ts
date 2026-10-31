@@ -8,7 +8,8 @@ const config: StorybookConfig = {
   "addons": [
     "@storybook/addon-a11y",
     "@storybook/addon-docs",
-    "storybook-addon-pseudo-states"
+    "storybook-addon-pseudo-states",
+    "@storybook/addon-vitest"
   ],
   "framework": "@storybook/nextjs-vite",
   "staticDirs": [

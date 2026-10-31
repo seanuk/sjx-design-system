@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "No Figma component yet. Built from the `selection/*` tokens, with the input focus ring on the thumb.",
+          "Built from the `--selection-*` tokens, with the input focus ring on the thumb.",
       },
     },
   },

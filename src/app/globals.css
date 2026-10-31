@@ -4,7 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Figma "Primitives" and "Semantic" colours, type styles and effects. */
+/* Primitive and semantic colours, type styles and effects. */
 @theme static {
   --color-white: #ffffff;
   --color-black: #020617;
@@ -161,15 +161,19 @@
   --color-info-surface: var(--color-blue-50);
   --color-info-default: var(--color-blue-600);
   --color-info-content: var(--color-blue-800);
+  --color-info-border: var(--color-blue-300);
   --color-success-surface: var(--color-green-50);
   --color-success-default: var(--color-green-600);
   --color-success-content: var(--color-green-800);
+  --color-success-border: var(--color-green-300);
   --color-warning-surface: var(--color-orange-50);
   --color-warning-default: var(--color-orange-600);
   --color-warning-content: var(--color-orange-800);
+  --color-warning-border: var(--color-orange-300);
   --color-error-surface: var(--color-red-50);
   --color-error-default: var(--color-red-600);
   --color-error-content: var(--color-red-800);
+  --color-error-border: var(--color-red-300);
 
   --text-heading-xl: 2rem;
   --text-heading-xl--line-height: 2.5rem;
@@ -285,7 +289,7 @@
 }
 
 :root {
-  /* Figma "Primitives": grid */
+  /* Primitives: grid */
   --grid-0: 0px;
   --grid-1: 1px;
   --grid-2: 2px;
@@ -322,7 +326,7 @@
   --grid-1440: 1440px;
   --grid-1920: 1920px;
 
-  /* Figma "Semantic": spacing, radius, border width */
+  /* Semantic: spacing, radius, border width */
   --number-spacing-none: var(--grid-0);
   --number-spacing-xxs: var(--grid-4);
   --number-spacing-xs: var(--grid-8);
@@ -350,7 +354,7 @@
   --number-border-width-lg: var(--grid-4);
   --number-border-width-xl: var(--grid-8);
 
-  /* Figma "Components": button */
+  /* Components: button */
   --button-small-padding-l-r: var(--number-spacing-sm);
   --button-small-padding-t-b: var(--number-spacing-xxs);
   --button-small-corner: var(--number-radius-xs);
@@ -392,7 +396,7 @@
   --button-destructive-content: var(--color-white);
   --button-destructive-border: var(--color-red-600);
 
-  /* Figma "Components": input */
+  /* Components: input */
   --input-default-padding-l-r: var(--number-spacing-xs);
   --input-default-padding-t-b: var(--number-spacing-xs);
   --input-default-corner: var(--number-radius-xxs);
@@ -413,7 +417,7 @@
   --input-disabled-placeholder: var(--color-disabled);
   --input-disabled-border: var(--color-disabled);
 
-  /* Figma "Components": selection */
+  /* Components: selection */
   --selection-primary-surface-unselected: var(--color-surface-primary);
   --selection-primary-surface-selected: var(--color-brand-600);
   --selection-primary-content: var(--color-white);
@@ -428,7 +432,42 @@
   --selection-disabled-description: var(--color-disabled);
   --selection-disabled-border: var(--color-disabled);
 
-  /* shadcn roles, mapped onto the Figma semantic tokens */
+  /* Components: chip */
+  --chip-corner: var(--number-radius-full);
+  --chip-border-width: var(--number-border-width-sm);
+  --chip-default-surface: var(--color-surface-primary);
+  --chip-default-border: var(--color-border-primary);
+  --chip-default-content: var(--color-content-primary);
+  --chip-primary-surface: var(--color-surface-secondary);
+  --chip-primary-border: var(--color-brand-600);
+  --chip-primary-content: var(--color-content-primary);
+  --chip-info-surface: var(--color-info-surface);
+  --chip-info-border: var(--color-info-border);
+  --chip-info-content: var(--color-info-content);
+  --chip-info-dot: var(--color-info-default);
+  --chip-success-surface: var(--color-success-surface);
+  --chip-success-border: var(--color-success-border);
+  --chip-success-content: var(--color-success-content);
+  --chip-success-dot: var(--color-success-default);
+  --chip-warning-surface: var(--color-warning-surface);
+  --chip-warning-border: var(--color-warning-border);
+  --chip-warning-content: var(--color-warning-content);
+  --chip-warning-dot: var(--color-warning-default);
+  --chip-error-surface: var(--color-error-surface);
+  --chip-error-border: var(--color-error-border);
+  --chip-error-content: var(--color-error-content);
+  --chip-error-dot: var(--color-error-default);
+  --chip-neutral-surface: var(--color-slate-100);
+  --chip-neutral-border: var(--color-border-secondary);
+  --chip-neutral-content: var(--color-content-secondary);
+  --chip-solid-surface: var(--color-surface-inverted);
+  --chip-solid-border: var(--color-surface-inverted);
+  --chip-solid-content: var(--color-content-on-inverted);
+  --chip-outline-surface: transparent;
+  --chip-outline-border: var(--color-border-secondary);
+  --chip-outline-content: var(--color-content-primary);
+
+  /* shadcn roles, mapped onto the semantic tokens */
   --background: var(--color-surface-primary);
   --foreground: var(--color-content-primary);
   --card: var(--color-surface-primary);

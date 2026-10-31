@@ -22,11 +22,13 @@ function Example({
   ...props
 }: ExampleProps) {
   const [value, setValue] = useState(defaultValue)
+  // The Focused story forces the ring on load. Real focus takes over from it.
+  const [forcedSlot, setForcedSlot] = useState(activeSlot)
   const slot = (index: number) => (
     <InputOTPSlot
       index={index}
       aria-invalid={invalid}
-      {...(index === activeSlot && { "data-active": true })}
+      {...(index === forcedSlot && { "data-active": true, "data-focus-ring": true })}
     />
   )
 
@@ -36,6 +38,7 @@ function Example({
       aria-label="Verification code"
       value={value}
       onChange={setValue}
+      onFocus={() => setForcedSlot(undefined)}
       {...props}
     >
       <InputOTPGroup>
@@ -61,7 +64,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Slots are 40px high to match `Text input`, with the same tokens and focus rings.",
+          "Slots are 40px high to match `Text input`, with the same tokens. The focus ring only shows for keyboard focus, not when a slot is clicked or tapped.",
       },
     },
   },
