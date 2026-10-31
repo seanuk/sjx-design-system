@@ -33,6 +33,7 @@ A personal design system, in code only. There is no Figma library. Storybook is 
 - Every component gets a matching `.stories.tsx` file.
 - `shadcn add` generates `import { cn } from "cn"`. Change it to `@/lib/utils`, which knows the text styles.
 - Form controls built on a native element share `inputStyles` from `@/lib/input-styles`. Change input styling there.
+- Dropdown Menu, Context Menu and Menubar share their popup and item styles from `@/lib/menu-styles`. Change menu styling there.
 
 ## Token rules
 Every visual value in components, stories and pages links to a token in `src/app/globals.css`. Do not use Tailwind's number scale (`gap-2`, `size-4`, `h-10`, `p-0`), its type scale (`text-sm`, `font-medium`, `leading-none`), raw values (`[3px]`, `#fff`) or palette colours from outside the theme.
@@ -64,5 +65,5 @@ Use the most specific token that exists: component, then semantic, then grid.
 - Lucide has no brand icons. Brand logos are added one at a time, as they are needed.
 
 ## Status
-- Done: project, shadcn, design tokens, text styles, Button, Input, form components, date picker, Chip, Accordion, Alert, Avatar, Breadcrumb, Card, Skeleton, Spinner, Tabs, Tooltip, Icons foundation page, Storybook, GitHub repo.
+- Done: project, shadcn, design tokens, text styles, Button, Button Group, Pagination, Chart, Context Menu, Dialog, Dropdown Menu, Questionnaire, Sheet, Sidebar, Menubar, Navigation Menu, Input, form components, date picker, Chip, Accordion, Alert, Avatar, Breadcrumb, Card, Skeleton, Spinner, Tabs, Tooltip, Icons foundation page, Storybook, GitHub repo.
 - Published: https://sjx-design-system.vercel.app. Vercel deploys `main` automatically and gives other branches a preview.

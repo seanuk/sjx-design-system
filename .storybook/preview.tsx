@@ -12,6 +12,18 @@ document.documentElement.classList.add(
   'antialiased'
 )
 
+// The preview iframe has <base target="_parent">, so a story's placeholder link
+// would load the iframe's URL in the whole window and lose the sidebar. Popups
+// render in a portal outside the story root, so this matches everything except
+// the docs page's own heading links.
+document.addEventListener('click', (event) => {
+  if (!(event.target instanceof Element)) return
+  const link = event.target.closest('a[href^="#"]')
+  if (!link) return
+  if (link.closest('#storybook-docs') && !link.closest('.docs-story')) return
+  event.preventDefault()
+})
+
 const preview: Preview = {
   decorators: [
     // The pseudo-states addon saves a story's forced state as a global, which

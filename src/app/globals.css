@@ -486,11 +486,12 @@
   --border: var(--color-border-secondary);
   --input: var(--color-border-primary);
   --ring: var(--color-border-focus);
-  --chart-1: oklch(0.905 0.182 98.111);
-  --chart-2: oklch(0.795 0.184 86.047);
-  --chart-3: oklch(0.681 0.162 75.834);
-  --chart-4: oklch(0.554 0.135 66.442);
-  --chart-5: oklch(0.476 0.114 61.907);
+  /* Series colours, in fixed order. Passes the colour-blind separation and contrast checks. */
+  --chart-1: var(--color-blue-600);
+  --chart-2: var(--color-orange-700);
+  --chart-3: var(--color-teal-600);
+  --chart-4: var(--color-purple-600);
+  --chart-5: var(--color-pink-600);
   --radius: var(--number-radius-xs);
   --sidebar: var(--color-surface-primary);
   --sidebar-foreground: var(--color-content-primary);
@@ -521,11 +522,11 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.905 0.182 98.111);
-  --chart-2: oklch(0.795 0.184 86.047);
-  --chart-3: oklch(0.681 0.162 75.834);
-  --chart-4: oklch(0.554 0.135 66.442);
-  --chart-5: oklch(0.476 0.114 61.907);
+  --chart-1: var(--color-blue-500);
+  --chart-2: var(--color-orange-600);
+  --chart-3: var(--color-teal-600);
+  --chart-4: var(--color-purple-500);
+  --chart-5: var(--color-pink-500);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
