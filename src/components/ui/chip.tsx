@@ -35,10 +35,10 @@ const chipVariants = cva(
           "border-(--chip-outline-border) bg-(--chip-outline-surface) text-(--chip-outline-content)",
       },
       size: {
-        sm: "h-(--grid-24) min-w-(--grid-24) gap-(--number-spacing-xxs) px-[calc(var(--grid-8)-var(--chip-border-width))] text-label-sm has-data-[slot=chip-remove]:pr-[calc(var(--grid-4)-var(--chip-border-width))] [&_svg]:size-(--grid-12)",
+        sm: "gap-(--number-spacing-xxs) px-[calc(var(--grid-4)+var(--grid-2)-var(--chip-border-width))] py-[calc(var(--grid-2)-var(--chip-border-width))] text-label-sm has-data-[slot=chip-remove]:pr-[calc(var(--grid-4)-var(--chip-border-width))] [&_svg]:size-(--grid-12)",
         default:
-          "h-(--grid-32) min-w-(--grid-32) gap-(--number-spacing-xs) px-[calc(var(--grid-12)-var(--chip-border-width))] text-label-md has-data-[slot=chip-remove]:pr-[calc(var(--grid-8)-var(--chip-border-width))] [&_svg]:size-(--grid-16)",
-        lg: "h-(--grid-40) min-w-(--grid-40) gap-(--number-spacing-xs) px-[calc(var(--grid-16)-var(--chip-border-width))] text-label-lg has-data-[slot=chip-remove]:pr-[calc(var(--grid-8)-var(--chip-border-width))] [&_svg]:size-(--grid-16)",
+          "gap-(--number-spacing-xs) px-[calc(var(--grid-8)-var(--chip-border-width))] py-[calc(var(--grid-4)-var(--chip-border-width))] text-label-md has-data-[slot=chip-remove]:pr-[calc(var(--grid-4)-var(--chip-border-width))] [&_svg]:size-(--grid-16)",
+        lg: "gap-(--number-spacing-xs) px-[calc(var(--grid-12)-var(--chip-border-width))] py-[calc(var(--grid-8)-var(--chip-border-width))] text-label-lg has-data-[slot=chip-remove]:pr-[calc(var(--grid-4)+var(--grid-2)-var(--chip-border-width))] [&_svg]:size-(--grid-16)",
       },
       disabled: {
         true: "pointer-events-none border-(--color-disabled) bg-(--color-surface-primary) text-(--color-disabled) [--chip-dot:var(--color-disabled)]",
