@@ -3,6 +3,12 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite"
 import { icons, SearchIcon } from "lucide-react"
 
 import { Input } from "@/components/ui/input"
+import colourGuidelines from "./foundations/colour.guidelines.md?raw"
+import typeGuidelines from "./foundations/type.guidelines.md?raw"
+import spacingGuidelines from "./foundations/spacing-and-corners.guidelines.md?raw"
+import elevationGuidelines from "./foundations/elevation.guidelines.md?raw"
+import layoutGuidelines from "./foundations/layout.guidelines.md?raw"
+import iconsGuidelines from "./foundations/icons.guidelines.md?raw"
 
 const meta = {
   title: "Foundations",
@@ -203,6 +209,7 @@ function Swatch({ name }: { name: string }) {
 }
 
 export const Colour: Story = {
+  parameters: { docs: { description: { story: colourGuidelines } } },
   render: () => (
     <div className="flex flex-col gap-(--number-spacing-lg)">
       <section className="flex flex-col gap-(--number-spacing-sm)">
@@ -246,6 +253,7 @@ export const Colour: Story = {
 }
 
 export const Type: Story = {
+  parameters: { docs: { description: { story: typeGuidelines } } },
   render: () => (
     <div className="flex flex-col gap-(--number-spacing-sm)">
       {textStyles.map(({ name, spec }) => (
@@ -277,6 +285,7 @@ export const Type: Story = {
 }
 
 export const SpacingAndCorners: Story = {
+  parameters: { docs: { description: { story: spacingGuidelines } } },
   name: "Spacing & Corners",
   render: () => (
     <div className="flex flex-col gap-(--number-spacing-lg)">
@@ -331,6 +340,7 @@ export const SpacingAndCorners: Story = {
 }
 
 export const Elevation: Story = {
+  parameters: { docs: { description: { story: elevationGuidelines } } },
   render: () => (
     <div className="flex flex-wrap gap-(--number-spacing-xxl) p-(--number-spacing-lg)">
       {shadows.map(({ name, variable }) => (
@@ -347,6 +357,7 @@ export const Elevation: Story = {
 }
 
 export const Layout: Story = {
+  parameters: { docs: { description: { story: layoutGuidelines } } },
   render: () => (
     <div className="flex flex-col gap-(--number-spacing-sm)">
       <h2>Breakpoints</h2>
@@ -430,5 +441,6 @@ function IconGallery() {
 }
 
 export const Icons: Story = {
+  parameters: { docs: { description: { story: iconsGuidelines } } },
   render: () => <IconGallery />,
 }

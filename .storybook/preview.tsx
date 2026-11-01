@@ -4,6 +4,7 @@ import { UPDATE_GLOBALS } from 'storybook/internal/core-events'
 
 import { figtree, geistMono } from '../src/app/fonts'
 import '../src/app/globals.css'
+import { DocsPage } from './docs-page'
 
 // The font variables must sit on <html>, as they do in the app's root layout.
 document.documentElement.classList.add(
@@ -54,6 +55,7 @@ const preview: Preview = {
     },
   ],
   parameters: {
+    docs: { page: DocsPage },
     controls: {
       matchers: {
        color: /(background|color)$/i,
