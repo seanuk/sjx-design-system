@@ -9,6 +9,8 @@ import spacingGuidelines from "./foundations/spacing-and-corners.guidelines.md?r
 import elevationGuidelines from "./foundations/elevation.guidelines.md?raw"
 import layoutGuidelines from "./foundations/layout.guidelines.md?raw"
 import iconsGuidelines from "./foundations/icons.guidelines.md?raw"
+import tokensGuidelines from "./foundations/tokens.guidelines.md?raw"
+import { TokenReference } from "./foundations/tokens"
 
 const meta = {
   title: "Foundations",
@@ -21,6 +23,12 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+// First, because every other foundation page shows one slice of these tokens.
+export const Tokens: Story = {
+  parameters: { docs: { description: { story: tokensGuidelines } } },
+  render: () => <TokenReference />,
+}
+
 const steps = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
 
 const neutrals = [
@@ -29,7 +37,7 @@ const neutrals = [
     "white-t75",
     "white-t50",
     "white-t25",
-    "white-t10",
+    "white-t15",
     "white-t05",
     "neutral-transparent",
   ],
@@ -57,6 +65,9 @@ const semanticColours = [
       "surface-secondary",
       "surface-tertiary",
       "surface-inverted",
+      "surface-hover",
+      "surface-neutral",
+      "transparent",
     ],
   },
   {
@@ -78,6 +89,16 @@ const semanticColours = [
       "border-focus-error",
     ],
   },
+  {
+    group: "Action",
+    tokens: [
+      "action-primary",
+      "action-primary-hover",
+      "action-destructive",
+      "action-destructive-hover",
+      "content-on-action",
+    ],
+  },
   { group: "Disabled", tokens: ["disabled"] },
   { group: "Info", tokens: ["info-surface", "info-default", "info-content", "info-border"] },
   {
@@ -92,6 +113,7 @@ const semanticColours = [
     group: "Error",
     tokens: ["error-surface", "error-default", "error-content", "error-border"],
   },
+  { group: "Data", tokens: ["data-1", "data-2", "data-3", "data-4", "data-5"] },
 ]
 
 const textStyles = [

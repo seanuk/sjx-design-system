@@ -11,7 +11,7 @@
   --color-white-t75: rgb(255 255 255 / 75%);
   --color-white-t50: rgb(255 255 255 / 50%);
   --color-white-t25: rgb(255 255 255 / 25%);
-  --color-white-t10: rgb(255 255 255 / 15%);
+  --color-white-t15: rgb(255 255 255 / 15%);
   --color-white-t05: rgb(255 255 255 / 5%);
   --color-neutral-transparent: rgb(255 255 255 / 0%);
   --color-black-t75: rgb(2 6 23 / 75%);
@@ -157,6 +157,23 @@
   --color-border-focus-error: var(--color-error-default);
 
   --color-disabled: var(--color-slate-300);
+
+  --color-surface-hover: var(--color-brand-50);
+  --color-surface-neutral: var(--color-slate-100);
+  --color-transparent: var(--color-neutral-transparent);
+
+  --color-action-primary: var(--color-brand-600);
+  --color-action-primary-hover: var(--color-brand-500);
+  --color-action-destructive: var(--color-red-600);
+  --color-action-destructive-hover: var(--color-red-700);
+  --color-content-on-action: var(--color-white);
+
+  /* Chart series, in fixed order. Passes the colour-blind separation and contrast checks. */
+  --color-data-1: var(--color-blue-600);
+  --color-data-2: var(--color-orange-700);
+  --color-data-3: var(--color-teal-600);
+  --color-data-4: var(--color-purple-600);
+  --color-data-5: var(--color-pink-600);
 
   --color-info-surface: var(--color-blue-50);
   --color-info-default: var(--color-blue-600);
@@ -373,28 +390,28 @@
   --button-large-border-width: var(--number-border-width-md);
   --button-large-padding-icon-edge: var(--number-spacing-md);
   --button-large-padding-icon-only-edge: var(--number-spacing-sm);
-  --button-primary-surface: var(--color-brand-600);
-  --button-primary-surface-hover: var(--color-brand-500);
+  --button-primary-surface: var(--color-action-primary);
+  --button-primary-surface-hover: var(--color-action-primary-hover);
   --button-primary-surface-disabled: var(--color-disabled);
-  --button-primary-content: var(--color-white);
-  --button-primary-content-disabled: var(--color-white);
-  --button-primary-border: var(--color-brand-600);
+  --button-primary-content: var(--color-content-on-action);
+  --button-primary-content-disabled: var(--color-content-on-action);
+  --button-primary-border: var(--color-action-primary);
   --button-primary-border-disabled: var(--color-disabled);
   --button-secondary-surface: var(--color-surface-primary);
-  --button-secondary-surface-hover: var(--color-brand-50);
+  --button-secondary-surface-hover: var(--color-surface-hover);
   --button-secondary-surface-disabled: var(--color-surface-primary);
-  --button-secondary-content: var(--color-brand-600);
+  --button-secondary-content: var(--color-action-primary);
   --button-secondary-content-disabled: var(--color-disabled);
-  --button-secondary-border: var(--color-brand-600);
+  --button-secondary-border: var(--color-action-primary);
   --button-secondary-border-disabled: var(--color-disabled);
-  --button-tertiary-surface: transparent;
-  --button-tertiary-surface-hover: var(--color-brand-50);
-  --button-tertiary-content: var(--color-brand-600);
-  --button-tertiary-border: transparent;
-  --button-destructive-surface: var(--color-red-600);
-  --button-destructive-surface-hover: var(--color-red-700);
-  --button-destructive-content: var(--color-white);
-  --button-destructive-border: var(--color-red-600);
+  --button-tertiary-surface: var(--color-transparent);
+  --button-tertiary-surface-hover: var(--color-surface-hover);
+  --button-tertiary-content: var(--color-action-primary);
+  --button-tertiary-border: var(--color-transparent);
+  --button-destructive-surface: var(--color-action-destructive);
+  --button-destructive-surface-hover: var(--color-action-destructive-hover);
+  --button-destructive-content: var(--color-content-on-action);
+  --button-destructive-border: var(--color-action-destructive);
 
   /* Components: input */
   --input-default-padding-l-r: var(--number-spacing-xs);
@@ -402,7 +419,7 @@
   --input-default-corner: var(--number-radius-xxs);
   --input-default-border-width: var(--number-border-width-sm);
   --input-primary-surface: var(--color-surface-primary);
-  --input-primary-surface-hover: var(--color-brand-50);
+  --input-primary-surface-hover: var(--color-surface-hover);
   --input-primary-content: var(--color-content-primary);
   --input-primary-label: var(--color-content-primary);
   --input-primary-description: var(--color-content-tertiary);
@@ -419,8 +436,8 @@
 
   /* Components: selection */
   --selection-primary-surface-unselected: var(--color-surface-primary);
-  --selection-primary-surface-selected: var(--color-brand-600);
-  --selection-primary-content: var(--color-white);
+  --selection-primary-surface-selected: var(--color-action-primary);
+  --selection-primary-content: var(--color-content-on-action);
   --selection-primary-label: var(--color-content-primary);
   --selection-primary-description: var(--color-content-tertiary);
   --selection-primary-description-error: var(--color-content-error);
@@ -445,7 +462,7 @@
   --chip-default-border: var(--color-border-primary);
   --chip-default-content: var(--color-content-primary);
   --chip-primary-surface: var(--color-surface-secondary);
-  --chip-primary-border: var(--color-brand-600);
+  --chip-primary-border: var(--color-action-primary);
   --chip-primary-content: var(--color-content-primary);
   --chip-info-surface: var(--color-info-surface);
   --chip-info-border: var(--color-info-border);
@@ -463,13 +480,13 @@
   --chip-error-border: var(--color-error-border);
   --chip-error-content: var(--color-error-content);
   --chip-error-dot: var(--color-error-default);
-  --chip-neutral-surface: var(--color-slate-100);
+  --chip-neutral-surface: var(--color-surface-neutral);
   --chip-neutral-border: var(--color-border-secondary);
   --chip-neutral-content: var(--color-content-secondary);
   --chip-solid-surface: var(--color-surface-inverted);
   --chip-solid-border: var(--color-surface-inverted);
   --chip-solid-content: var(--color-content-on-inverted);
-  --chip-outline-surface: transparent;
+  --chip-outline-surface: var(--color-transparent);
   --chip-outline-border: var(--color-border-secondary);
   --chip-outline-content: var(--color-content-primary);
 
@@ -480,8 +497,8 @@
   --card-foreground: var(--color-content-primary);
   --popover: var(--color-surface-primary);
   --popover-foreground: var(--color-content-primary);
-  --primary: var(--color-brand-600);
-  --primary-foreground: var(--color-white);
+  --primary: var(--color-action-primary);
+  --primary-foreground: var(--color-content-on-action);
   --secondary: var(--color-surface-secondary);
   --secondary-foreground: var(--color-content-primary);
   --muted: var(--color-surface-tertiary);
@@ -492,17 +509,16 @@
   --border: var(--color-border-secondary);
   --input: var(--color-border-primary);
   --ring: var(--color-border-focus);
-  /* Series colours, in fixed order. Passes the colour-blind separation and contrast checks. */
-  --chart-1: var(--color-blue-600);
-  --chart-2: var(--color-orange-700);
-  --chart-3: var(--color-teal-600);
-  --chart-4: var(--color-purple-600);
-  --chart-5: var(--color-pink-600);
+  --chart-1: var(--color-data-1);
+  --chart-2: var(--color-data-2);
+  --chart-3: var(--color-data-3);
+  --chart-4: var(--color-data-4);
+  --chart-5: var(--color-data-5);
   --radius: var(--number-radius-xs);
   --sidebar: var(--color-surface-primary);
   --sidebar-foreground: var(--color-content-primary);
-  --sidebar-primary: var(--color-brand-600);
-  --sidebar-primary-foreground: var(--color-white);
+  --sidebar-primary: var(--color-action-primary);
+  --sidebar-primary-foreground: var(--color-content-on-action);
   --sidebar-accent: var(--color-surface-tertiary);
   --sidebar-accent-foreground: var(--color-content-primary);
   --sidebar-border: var(--color-border-secondary);
